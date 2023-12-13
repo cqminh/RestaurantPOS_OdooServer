@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_restaurant_branch,restaurant.branch,model_restaurant_branch,,1,1,1,1
+access_restaurant_pos,restaurant.pos,model_restaurant_pos,,1,1,1,1
+access_restaurant_table,restaurant.table,model_restaurant_table,,1,1,1,1
+access_restaurant_area,restaurant.area,model_restaurant_area,,1,1,1,1
+acces_table_virtual_many2one,table.virtual.many2one,model_table_virtual_many2one,,1,1,1,1

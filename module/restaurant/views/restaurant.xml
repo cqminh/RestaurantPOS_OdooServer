@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- ====== Restaurant ====== -->
+    <!-- Form view of restaurant Orders-->
+    <record id="restaurant_order_form_view" model="ir.ui.view">
+        <field name="name">Restaurant Orders Form</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- confirm -->
+                    <button name="confirm_order" string="Confirm Order" class="btn-primary" type="object"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <!-- Lock -->
+                    <button name="lock_restaurant_order" type="object" string="Lock(Thanh toán)" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'sale')]}"/>
+
+                    <!-- invoice -->
+                    <button name="invoice_create_and_validate_restaurant" states="draft"
+                            groups="account.group_account_invoice" string="Create invoice"
+                            class="btn-primary" type="object"
+                            attrs="{'invisible': [('invoice_status', '!=', 'to invoice')]}"/>
+
+                    <!-- unLock -->
+                    <button name="unlock_sale_order" type="object" class="btn-primary" string="Unlock (để test)"
+                            attrs="{'invisible': [('state', '!=', 'done')]}"/>
+
+                    <!-- table -->
+<!--                    <button name="pool_table" type="object" string="Gộp bàn" class="oe_highlight"-->
+<!--                            context="{'action': 1}" attrs="{'invisible': [('state', '==', 'done')]}"/>-->
+                    <button name="move_table" type="object" class="oe_highlight"
+                            string="Chuyển bàn" context="{'action': 1}"
+                            attrs="{'invisible': [('state', '==', 'done')]}"/>
+
+                    <!-- print -->
+                    <!--                    <button name="print_provision_receipt"-->
+                    <!--                            string="Print Provision Receipt"-->
+                    <!--                            class="btn-primary"-->
+                    <!--                            type="object"-->
+                    <!--                            attrs="{'invisible': ['|',('state','!=','done'),('invoice_count','!=',0)]}"/>-->
+                    <!--                    <button name="print_bill"-->
+                    <!--                            string="Print Bill"-->
+                    <!--                            class="btn-primary"-->
+                    <!--                            type="object"-->
+                    <!--                            attrs="{'invisible': ['|',('state','!=','done'),('invoice_count','=',0)]}"/>-->
+                    <field name="state" select="2" widget="statusbar"
+                           statusbar_visible="draft,sent,sale,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                        <button type="object"
+                                name="action_view_delivery"
+                                class="oe_stat_button"
+                                icon="fa-truck"
+                                attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="base.group_user">
+                            <field name="delivery_count" widget="statinfo" string="Delivery"/>
+                        </button>
+<!--                        <button type="object"-->
+<!--                                name="action_view_delivery"-->
+<!--                                class="oe_stat_button"-->
+<!--                                icon="fa-truck"-->
+<!--                                attrs="{'invisible': [('delivery_count', '=', 0)]}" groups="stock.group_stock_user">-->
+<!--                            <field name="delivery_count" widget="statinfo" string="Delivery"/>-->
+<!--                        </button>-->
+                    </div>
+                    <label for="name" string="Restaurant Order No"/>
+                    <h1>
+                        <field name="name" colspan="4" readonly="1"/>
+                    </h1>
+                    <group colspan="4" col="4">
+                        <field name="invoice_status" invisible="1"/>
+                        <field name="date_order" readonly="1"/>
+                        <field name="warehouse_id" string="Warehouse"/>
+                    </group>
+                    <separator string="Order Info" colspan="4"/>
+                    <group colspan="4" col="4">
+                        <field name="user_id" string="Sale Person" readonly="1"/>
+
+                    </group>
+                    <separator string="Customer Info" colspan="4"/>
+                    <group colspan="4" col="4">
+                        <field name="company_id" readonly="1"/>
+<!--                        <field name="partner_id" required="1" string="Guest Name (Partner_id Gốc Không sửa)"-->
+<!--                               widget="res_partner_many2one"-->
+<!--                               domain="[('type', '=', 'contact'), ('parent_id', '=', False),('customer','=',True), ('active','=',True)]"-->
+<!--                               context="{'search_default_customer':1, 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>-->
+                        <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address"
+                               context="{'default_type':'invoice'}" options='{"always_reload": True}'/>
+                        <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address"
+                               context="{'default_type':'delivery'}" options='{"always_reload": True}'/>
+
+<!--                        <field name="partner_id" string="Guest Name (Partner_id Gốc Không thao tác)"-->
+<!--                               required="1"-->
+<!--                               domain="[('type', '=', 'contact'), ('parent_id', '=', False),('customer','=',True), ('active','=',True)]"-->
+<!--                        />-->
+                        <field name="partner_id_hr" string="Guest Name"
+                               domain="[('type', '=', 'contact'), ('parent_id', '=', False),('active','=',True),
+                               ('is_company', '=', False)]"
+                               attrs="{'readonly': [('state', 'in',['done','cancel'])]}"
+                        />
+                        <field name="pricelist_id"
+                               attrs="{'readonly': [('state', 'in',['done','cancel'])]}"/>
+                        <field name="pos_id" invisible="1"/>
+                        <field name="delivery_status" invisible="1"/>
+                    </group>
+                    <!-- List table order view -->
+                    <separator string="Table" colspan="4"/>
+                    <field name="table_id" required="1"/>
+                    <!-- List restaurant order view -->
+                    <separator string="List Order" colspan="4"/>
+                    <group>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="order_line" colspan="2" nolabel="1"
+                               context="{'tree_view_ref': 'restaurant.view_restaurant_order_line_tree_view_har'}"
+                               attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
+                            <!-- ====== Restaurant Order Line Tree View ====== -->
+                            <tree editable="top">
+                                <field name="product_id" domain="[('available_in_pos','=',True)]"/>
+                                <field name="product_uom_qty" string="Initial Quantity"
+                                       context="{'partner_id':parent.partner_id,'quantity':product_uom_qty,'pricelist':parent.pricelist_id,'uom':product_uom}"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="qty_reserved" string="Quantity Done"/>
+                                <field name="qty_delivered" string="Delivered" invisible="1"/>
+                                <field name="qty_invoiced" string="Invoiced" invisible="1"/>
+                                <field name="product_uom" string="Unit"
+                                       domain="[('category_id','=', product_uom_category_id)]"/>
+                                <field name="price_unit" string="Unit Price"/>
+                                <field name="taxes_id" widget="many2many_tags"/>
+                                <field name="price_subtotal" string="Subtotal"/>
+                                <field name="remarks" string="Notes"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="discount_type" class="oe_inline"
+                                   attrs="{'required' :[('discount_rate', '>', 0.0)], 'readonly' : [('state', 'in', ['done'])]}"/>
+                            <field name="discount_rate" class="oe_inline"
+                                   attrs="{'readonly' : [('state', 'in', ['done'])]}"/>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                            <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_discount" widget='monetary'
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of restaurant Orders-->
+    <record id="restaurant_order_tree_view" model="ir.ui.view">
+        <field name="name">Restaurant Orders Tree</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Order No"/>
+                <field name="date_order" string="Order Date"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="table_id"/>
+                <field name="amount_total" string="Total"/>
+                <field name="state" string="Status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view of Orders-->
+    <record id="order_search_view" model="ir.ui.view">
+        <field name="name">Orders Search</field>
+        <field name="model">sale.order</field>
+        <field eval="4" name="priority"/>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="order_draft" string="Quotation" domain="[('state', '=', 'draft')]"/>
+                <filter name="order_sent" string="Quotation Sent" domain="[('state', '=', 'sent')]"/>
+                <filter name="order_sale" string="Sales Order" domain="[('state', '=', 'sale')]"/>
+                <filter name="order_done" string="Locked" domain="[('state', '=', 'done')]"/>
+                <filter name="order_cancel" string="Cancelled" domain="[('state', '=', 'cancel')]"/>
+                <group string="Group By" name="groupby">
+                    <filter name="state" string="State" context="{'group_by': 'state'}"/>
+                    <filter name="table_id" string="Table" context="{'group_by': 'table_id'}"/>
+                    <filter name="partner_id" string="Customer" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

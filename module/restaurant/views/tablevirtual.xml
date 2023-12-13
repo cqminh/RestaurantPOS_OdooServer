@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_move_table_virtual_form" model="ir.ui.view">
+        <field name="name">table.virtual.many2one.form</field>
+        <field name="model">table.virtual.many2one</field>
+        <field name="arch" type="xml">
+            <form string="Tables Virtual">
+                <group colspan="4" col="4">
+                    <field name="table_id_pool" string="Chuyển đến bàn"
+                           domain="[('status','=','available'), ('company_id', '=', company_id),
+                            ('pos_id', '=', pos_id)]"/>
+                    <field name="order_id_parent" string="Table ID Bàn gốc"/>
+                    <field name="company_id" string="ID company" invisible="1"/>
+                    <field name="pos_id" string="ID POS" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>

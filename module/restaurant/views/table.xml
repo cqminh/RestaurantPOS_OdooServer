@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="main_menu_table"
+              name="Table config"
+              sequence="25"
+              parent="restaurant_configuration_menu"/>
+
+    <!-- === Table === -->
+    <!-- Form view of restaurant tables -->
+    <record id="view_restaurant_tables_form" model="ir.ui.view">
+        <field name="name">restaurant_tables.form</field>
+        <field name="model">restaurant.table</field>
+        <field name="arch" type="xml">
+            <form string="Tables Detail">
+                <group colspan="4" col="4">
+                    <field name="company_id" readonly="1"/>
+                    <field name="pos_id"/>
+                    <field name="area_id"/>
+                    <field name="name"/>
+                    <field name="capacity"/>
+                    <field name="status"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree search of restaurant tables -->
+    <record id="view_restaurant_tables_search" model="ir.ui.view">
+        <field name="name">Table Search</field>
+        <field name="model">restaurant.table</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="area_id"/>
+                <group string="Group By">
+                    <filter name="area_group" string="Area" domain="[]"
+                            context="{'group_by': 'area_id'}"></filter>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view of restaurant tables -->
+    <record id="view_restaurant_tables_tree" model="ir.ui.view">
+        <field name="name">Table Tree</field>
+        <field name="model">restaurant.table</field>
+        <field name="arch" type="xml">
+            <tree string="Tables Detail">
+                <field name="company_id"/>
+                <field name="pos_id"/>
+                <field name="area_id"/>
+                <field name="name"/>
+                <field name="capacity"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of restaurant table -->
+    <record id="open_restaurant_table_form_tree" model="ir.actions.act_window">
+        <field name="name">Tables</field>
+        <field name="res_model">restaurant.table</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+<!--        <field name="domain">[('company_id', 'in', company_ids)]-->
+<!--        </field>-->
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem id="menu_open_restaurant_table_form_tree" name="Table"
+              action="open_restaurant_table_form_tree" sequence="27"
+              parent="main_menu_table"/>
+</odoo>
