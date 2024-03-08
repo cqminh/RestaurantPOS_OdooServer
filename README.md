@@ -28,17 +28,9 @@
     <li><a href="#công-nghệ-được-sử-dụng">Công nghệ được sử dụng</a></li>
     <li>
       <a href="#chức-năng">Chức năng</a>
-      <ul>
-        <li><a href="#chức-năng-của-khách-hàng">Chức năng của khách hàng</a></li>
-        <li><a href="#chức-năng-của-admin">Chức năng của admin</a></li>
-      </ul>
     </li>
     <li>
       <a href="#giao-diện-của-web">Giao diện</a>
-      <ul>
-        <li><a href="#giao-diện-chung">Giao diện chung</a></li>
-        <li><a href="#giao-diện-admin">Giao diện của admin</a></li>
-      </ul>
     </li>
     <li><a href="#ghi-chú-khác-khi-sử-dụng">Ghi chú</a></li>
   </ol>
@@ -59,83 +51,66 @@ Luận văn là một hệ thống quản lý nhà hàng đa nền tảng hỗ t
 *Các chức năng có trên Web của Odoo*
 - Cấu hình các thông tin của nhà hàng.
 - Cấu hình các sản phẩm.
-- Tạo đơn hàng.
-- 
+- Quản lý các đơn hàng.
+- Lưu trữ thông tin khách hàng.
+- Thống kê báo cáo bán hàng.
 
 #### Giao diện của web
-##### Giao diện chung
-
-Trang chủ
-
-![Trang chủ](/screenshot/screenshot1.jpg)
-
-Sản phẩm nổi bật ở trang chủ
-
-![Trang chủ](/screenshot/screenshot2.jpg)
-
-Giới thiệu
-
-![Giới thiệu](/screenshot/screenshot3.jpg)
-
-Sản phẩm
-
-![Sản phẩm](/screenshot/screenshot4.jpg)
-
-Chi tiết sản phẩm - Sản phẩm tương tự
-
-![Sản phẩm](/screenshot/screenshot5.jpg)
-
-Đánh giá sản phẩm
-
-![Sản phẩm](/screenshot/screenshot6.jpg)
-
-Thông tin liên hệ
-
-![Liên hệ](/screenshot/screenshot7.jpg)
-
-Ý kiến đóng góp
-
-![Liên hệ](/screenshot/screenshot8.jpg)
-
-Giỏ hàng
-
-![Cá nhân](/screenshot/screenshot12.jpg)
-
-Lịch sử mua hàng
-
-![Cá nhân](/screenshot/screenshot13.jpg)
 
 Đăng nhập
 
-![Đăng nhập](/screenshot/screenshot9.jpg)
+![general](/screenshot/ss1.png)
 
-Đăng ký
+Danh sách điểm bán hàng
 
-![Đăng ký](/screenshot/screenshot10.jpg)
+![general](/screenshot/ss2.png)
 
-Admin đăng nhập
+Danh sách chi nhánh
 
-![Đăng nhập](/screenshot/screenshot11.jpg)
+![general](/screenshot/ss3.png)
 
-##### Giao diện admin
+Cấu hình chi nhánh
 
-Thư phản hồi
+![general](/screenshot/ss4.png)
 
-![Admin](/screenshot/screenshot14.jpg)
+Cấu hình điểm bán hàng
 
-Quản lý sản phẩm
+![general](/screenshot/ss5.png)
 
-![Admin](/screenshot/screenshot15.jpg)
+Danh sách khu vực
 
-Quản lý hóa đơn
+![general](/screenshot/ss6.png)
 
-![Admin](/screenshot/screenshot16.jpg)
+Cấu hình khu vực
+
+![general](/screenshot/ss7.png)
+
+Danh sách bàn
+
+![general](/screenshot/ss8.png)
+
+Cấu hình bàn
+
+![general](/screenshot/ss9.png)
+
+Danh sách hoá đơn
+
+![general](/screenshot/ss10.png)
+
+Chi tiết một hoá đơn
+
+![general](/screenshot/ss11.png)
 
 Thống kê doanh số
 
-![Admin](/screenshot/screenshot17.jpg)
+![general](/screenshot/ss12.png)
+
+Thống kê sản phẩm
+
+![general](/screenshot/ss13.png)
 
 #### Ghi chú khác khi sử dụng
+**Nếu bạn muốn cài đặt hệ thống,** liên hệ tôi tại [cqminh.it@gmail.com](mailto:cqminh.it@gmail.com)
 - Đi tới app Window [tại đây](https://github.com/cqminh/RestaurantPOS_WinApp.git)
 - Đi tới app Android [tại đây](https://github.com/cqminh/RestaurantPOS_AndrApp.git)
 

@@ -28,17 +28,9 @@
     <li><a href="#technology-used">Technology used</a></li>
     <li>
       <a href="#function">Function</a>
-      <ul>
-        <li><a href="#customers-function">Customer's function</a></li>
-        <li><a href="#admins-funtion">Admin's funtion</a></li>
-      </ul>
     </li>
     <li>
       <a href="#interface">Interface</a>
-      <ul>
-        <li><a href="#general-interface">General interface</a></li>
-        <li><a href="#admins-interface">Admin's interface</a></li>
-      </ul>
     </li>
     <li><a href="#others-note-for-used">Others note for used</a></li>
   </ol>
@@ -57,91 +49,68 @@ The thesis is a multi-platform restaurant management system supporting usage on 
 
 #### Function
 *Functions on Odoo Website*
-##### Customer's function:
-- Home page display feature products which are bestseller.
-- Finding product by its name.
-- Register, sign in, cart, user's page, purchase history.
-- Product detail's page, recommend similar product page, rating product.
-##### Admin's funtion:
-- Product list, add/edit/delete product.
-- Order list, view order detail.
-- Contribute list.
-- Sales statistics.
+- Configure restaurant information.
+- Configure products.
+- Manage orders.
+- Store customer infomation.
+- Sales report statistics.
 
 #### Interface
-##### General interface
-
-Home
-
-![Trang chủ](/screenshot/screenshot1.jpg)
-
-Feature product on home page
-
-![Trang chủ](/screenshot/screenshot2.jpg)
-
-Introduction
-
-![Giới thiệu](/screenshot/screenshot3.jpg)
-
-Product
-
-![Sản phẩm](/screenshot/screenshot4.jpg)
-
-Product's detail - Similar product
-
-![Sản phẩm](/screenshot/screenshot5.jpg)
-
-Product's comment
-
-![Sản phẩm](/screenshot/screenshot6.jpg)
-
-Contact
-
-![Liên hệ](/screenshot/screenshot7.jpg)
-
-Contribute
-
-![Liên hệ](/screenshot/screenshot8.jpg)
-
-Cart
-
-![Cá nhân](/screenshot/screenshot12.jpg)
-
-History
-
-![Cá nhân](/screenshot/screenshot13.jpg)
 
 Log in
 
-![Đăng nhập](/screenshot/screenshot9.jpg)
+![general](/screenshot/ss1.png)
 
-Register
+POS list
 
-![Đăng ký](/screenshot/screenshot10.jpg)
+![general](/screenshot/ss2.png)
 
-Log in for admin
+Branch list
 
-![Đăng nhập](/screenshot/screenshot11.jpg)
+![general](/screenshot/ss3.png)
 
-##### Admin's interface
+Configure branch
 
-Contribute
+![general](/screenshot/ss4.png)
 
-![Admin](/screenshot/screenshot14.jpg)
+Configure POS
 
-Manage product
+![general](/screenshot/ss5.png)
 
-![Admin](/screenshot/screenshot15.jpg)
+Area list
 
-Manage order
+![general](/screenshot/ss6.png)
 
-![Admin](/screenshot/screenshot16.jpg)
+Configure area
 
-Sales statistics
+![general](/screenshot/ss7.png)
 
-![Admin](/screenshot/screenshot17.jpg)
+Table list
+
+![general](/screenshot/ss8.png)
+
+Configure table
+
+![general](/screenshot/ss9.png)
+
+Orders list
+
+![general](/screenshot/ss10.png)
+
+Order details
+
+![general](/screenshot/ss11.png)
+
+Revenue statistics
+
+![general](/screenshot/ss12.png)
+
+Product statistics
+
+![general](/screenshot/ss13.png)
 
 #### Others note for used
+**If you want to install this system,** please contact me on [cqminh.it@gmail.com](mailto:cqminh.it@gmail.com)
 - Go to Window application [here](https://github.com/cqminh/RestaurantPOS_WinApp.git)
 - Go to Android application [here](https://github.com/cqminh/RestaurantPOS_AndrApp.git)
 
